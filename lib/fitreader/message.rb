@@ -1,4 +1,4 @@
-class Message
+class BackMessage
   attr_accessor :global_num, :name, :data
 
   def initialize(definitions)

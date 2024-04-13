@@ -1,6 +1,7 @@
+require 'byebug'
+require_relative 'file_header.rb'
 require_relative 'unpack.rb'
 require_relative 'fit_object.rb'
-require_relative 'file_header.rb'
 require_relative 'record_header.rb'
 require_relative 'definition_record.rb'
 require_relative 'data_field.rb'

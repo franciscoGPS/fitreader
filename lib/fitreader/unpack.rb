@@ -1,13 +1,16 @@
-module Unpack
+require 'byebug'
+module BakUnpack
   def readbytes(io, char, len)
     d = io.read(len)
     d.unpack(char).first
   end
 
   def read_multiple(io, char, len, size)
+    pp "char: #{char}, len: #{len}, size: #{size}" * 100
     if char == 'Z*'
       readbytes(io, char, len)
     else
+      debugger
       multiples = len / size
       res = io.read(len).unpack(char * multiples)
       if res.length == 1

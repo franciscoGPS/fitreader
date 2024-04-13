@@ -1,4 +1,4 @@
-class DataField < FitObject
+class BakDataField < FitObject
   TYPES = {
     0 => { size: 1, unpack_type: 'C', endian: 0, invalid: 255 },
     1 => { size: 1, unpack_type: 'c', endian: 0, invalid: 127 },
@@ -27,8 +27,13 @@ class DataField < FitObject
     arch = options[:arch]
 
     base = TYPES[base_num]
+    pp "base: #{base}"
     char = base[:unpack_type]
+    pp "char: #{char}"
+    pp "size: #{size}"
     char = char[arch] if char.is_a?(Hash)
+    pp "char: #{char}"
+    pp "size: #{size}"
     @raw = read_multiple(io, char, size, base[:size])
     @valid = check(@raw, base[:invalid])
   end

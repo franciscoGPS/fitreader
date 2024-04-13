@@ -1,7 +1,8 @@
 require_relative 'field_definition.rb'
 require_relative 'dev_field_definition.rb'
+require 'byebug'
 
-class DefinitionRecord < FitObject
+class BakDefinitionRecord < FitObject
   attr_reader :reserved, :global_msg_num, :num_fields, :field_definitions, :data_records, :local_num, :dev_defs
 
   def initialize(io, local_num, dev_field_defs = nil)
@@ -29,7 +30,9 @@ class DefinitionRecord < FitObject
   end
 
   def valid
+
     fd = Sdk.fields(@global_msg_num)
+    pp fd
     return if fd.nil?
     @data_records.map do |d|
       d.valid.select { |k, _| fd.keys.include? k }.merge(d.dev_fields)
